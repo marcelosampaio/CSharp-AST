@@ -8,4 +8,14 @@ public class Formatura
     {
         this.dataFormatura = dataFormatura;
     }
+
+    public bool JaPassou(DateTime dataAtual)
+    {
+        return dataAtual > dataFormatura;
+    }
+
+    public bool EHoje(DateTime dataAtual)
+    {
+        return dataAtual == dataFormatura;
+    }
 }

@@ -4,7 +4,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        DateTime dataFormatura = new DateTime(2026, 12, 15);
+        DateTime dataFormatura = new DateTime(2027, 7, 30);
 
         Formatura formatura = new Formatura(dataFormatura);
 
@@ -23,6 +23,17 @@ public class Program
             return;
         }
 
-        Console.WriteLine($"Data informada: {dataAtual:dd/MM/yyyy}");
+        if (formatura.JaPassou(dataAtual))
+        {
+            Console.WriteLine("Parabéns! Você já deveria estar formado!");
+        }
+        else if (formatura.EHoje(dataAtual))
+        {
+            Console.WriteLine("A data da formatura é hoje!");
+        }
+        else
+        {
+            Console.WriteLine("A formatura ainda não chegou.");
+        }
     }
 }
