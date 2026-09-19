@@ -8,6 +8,21 @@ public class Program
 
         Formatura formatura = new Formatura(dataFormatura);
 
-        Console.WriteLine("checkpoint commit");
+        Console.Write("Digite a data atual (dd/MM/yyyy): ");
+
+        DateTime dataAtual;
+
+        while (!DateTime.TryParse(Console.ReadLine(), out dataAtual))
+        {
+            Console.Write("Data inválida. Digite novamente (dd/MM/yyyy): ");
+        }
+
+        if (dataAtual > DateTime.Today)
+        {
+            Console.WriteLine("Erro: A data informada não pode ser no futuro!");
+            return;
+        }
+
+        Console.WriteLine($"Data informada: {dataAtual:dd/MM/yyyy}");
     }
 }
