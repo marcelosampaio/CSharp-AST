@@ -2,12 +2,12 @@ namespace CSharpAT07;
 
 public class ContaBancaria
 {
-    private string Titular;
+    private string titular;
     private decimal saldo;
 
     public ContaBancaria(string titular)
     {
-        Titular = titular;
+        this.titular = titular;
     }
 
     public void Depositar(decimal valor)
@@ -38,7 +38,7 @@ public class ContaBancaria
 
     public string getTitular()
     {
-        return Titular;
+        return titular;
     }
 
     public void ExibirSaldo()
