@@ -18,4 +18,9 @@ public class Formatura
     {
         return dataAtual == dataFormatura;
     }
+
+    public DateTime ObterDataFormatura()
+    {
+        return dataFormatura;
+    }
 }
