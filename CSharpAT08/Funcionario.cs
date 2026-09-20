@@ -12,8 +12,7 @@ public abstract class Funcionario
         Cargo = cargo;
         SalarioBase = salarioBase;
     }
-
-    // Método virtual para o cálculo do salário (pode ser sobrescrito pelas subclasses)
+    
     public virtual decimal CalcularSalarioFinal()
     {
         return SalarioBase;

@@ -4,16 +4,13 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        // Array com limite fixo de 5 produtos conforme o enunciado
-        Produto[] estoqueArray = new Produto[5];
-        int quantidadeCadastrada = 0;
-
+        GestorArquivo gestorArquivo = new GestorArquivo();
         bool executando = true;
 
         while (executando)
         {
             Console.Clear();
-            Console.WriteLine("=== SISTEMA DE CONTROLE DE ESTOQUE (MEMÓRIA) ===");
+            Console.WriteLine("=== SISTEMA DE CONTROLE DE ESTOQUE (FINAL) ===");
             Console.WriteLine("1. Inserir Produto");
             Console.WriteLine("2. Listar Produtos");
             Console.WriteLine("3. Sair");
@@ -26,9 +23,9 @@ public class Program
                 case "1":
                     Console.Clear();
                     Console.WriteLine("=== INSERIR NOVO PRODUTO ===");
-
-                    // Validação do limite de 5 produtos
-                    if (quantidadeCadastrada >= 5)
+                    
+                    var produtosAtuais = gestorArquivo.LerProdutos();
+                    if (produtosAtuais.Count >= 5)
                     {
                         Console.WriteLine("\nLimite de produtos atingido!");
                     }
@@ -43,11 +40,12 @@ public class Program
                         Console.Write("Digite o preço unitário (ex: 4500.00): ");
                         decimal preco = decimal.Parse(Console.ReadLine());
 
-                        // Armazena no array e incrementa o contador
-                        estoqueArray[quantidadeCadastrada] = new Produto(nome, quantidade, preco);
-                        quantidadeCadastrada++;
+                        Produto novoProduto = new Produto(nome, quantidade, preco);
 
-                        Console.WriteLine("\nProduto cadastrado com sucesso no array!");
+                        // Salva diretamente no arquivo
+                        gestorArquivo.SalvarProduto(novoProduto);
+
+                        Console.WriteLine("\nProduto cadastrado e salvo com sucesso!");
                     }
                     break;
 
@@ -55,15 +53,16 @@ public class Program
                     Console.Clear();
                     Console.WriteLine("=== LISTA DE PRODUTOS (ESTOQUE) ===");
 
-                    if (quantidadeCadastrada == 0)
+                    var listaProdutos = gestorArquivo.LerProdutos();
+
+                    if (listaProdutos.Count == 0)
                     {
                         Console.WriteLine("\nNenhum produto cadastrado.");
                     }
                     else
                     {
-                        for (int i = 0; i < quantidadeCadastrada; i++)
+                        foreach (var p in listaProdutos)
                         {
-                            Produto p = estoqueArray[i];
                             Console.WriteLine($"Produto: {p.Nome} | Quantidade: {p.Quantidade} | Preço: {p.Preco:C2}");
                         }
                     }

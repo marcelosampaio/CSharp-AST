@@ -8,8 +8,7 @@ public class Gerente : Funcionario
         : base(nome, cargo, salarioBase)
     {
     }
-
-    // Sobrescreve o método aplicando os 20% de bônus ao salário base
+    
     public override decimal CalcularSalarioFinal()
     {
         return SalarioBase + (SalarioBase * PercentualBonus);
